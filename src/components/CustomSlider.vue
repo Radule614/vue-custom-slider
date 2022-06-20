@@ -43,6 +43,7 @@ export default{
         this.sliderViewport= this.slideNumber * (this.slideWidth + this.slideSpacing) - this.slideSpacing;
         this.sliderLastPossiblePosition = (this.itemArray.length - this.slideNumber) * (this.slideWidth + this.slideSpacing);
         this.calculateCurrentSlide();
+        
       }
     },
     goForward(){

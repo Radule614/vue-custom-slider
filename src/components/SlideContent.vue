@@ -16,7 +16,11 @@ export default{
 
 <style scoped>
 .slide{
-  padding:170px;
+  width: 300px;
+  height: 300px;
   font-size: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>
