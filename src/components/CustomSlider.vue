@@ -39,10 +39,9 @@ export default{
         let slide = this.$refs.slideEl[0];
         this.slideWidth = slide.clientWidth;
         this.slideHeight = slide.clientHeight;
-        this.slideSpacing = slide.clientWidth;
-        this.sliderSpacing = 2*parseFloat(slide.currentStyle || window.getComputedStyle(slide).marginRight);
-        this.sliderViewport=  this.slideWidth * this.slideNumber + (this.slideNumber - 1) * this.sliderSpacing;
-        this.sliderLastPossiblePosition = (this.itemArray.length - this.slideNumber) * this.slideWidth + (this.itemArray.length - this.slideNumber) * this.sliderSpacing;
+        this.slideSpacing = 2*parseFloat((slide.currentStyle || window.getComputedStyle(slide)).marginRight);
+        this.sliderViewport= this.slideNumber * (this.slideWidth + this.slideSpacing) - this.slideSpacing;
+        this.sliderLastPossiblePosition = (this.itemArray.length - this.slideNumber) * (this.slideWidth + this.slideSpacing);
         this.calculateCurrentSlide();
       }
     },
@@ -50,7 +49,7 @@ export default{
       if(this.sliderPosition <= -this.sliderLastPossiblePosition){
         this.sliderPosition = 0;
       }else{
-        this.sliderPosition -= this.slideWidth + this.sliderSpacing;
+        this.sliderPosition -= this.slideWidth + this.slideSpacing;
       }
       this.calculateCurrentSlide();
     },
@@ -58,12 +57,12 @@ export default{
       if(this.sliderPosition >= 0){
         this.sliderPosition = -this.sliderLastPossiblePosition;
       }else{
-        this.sliderPosition += this.slideWidth + this.sliderSpacing;
+        this.sliderPosition += this.slideWidth + this.slideSpacing;
       }
       this.calculateCurrentSlide();
     },
     calculateCurrentSlide(){
-      this.currentSlide = Math.abs(this.sliderPosition)/(this.slideWidth+this.sliderSpacing);
+      this.currentSlide = Math.abs(this.sliderPosition)/(this.slideWidth+this.slideSpacing);
     }
   }
 }
